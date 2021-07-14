@@ -1,0 +1,7 @@
+.vscode/**
+*.o
+Debug/
+Release/
+*.a
+/Release (TM4C1294)/
+/Release (TM4C1292)/
