@@ -1,8 +1,4 @@
-#ifndef NAFT_HW1236_H
-#define NAFT_HW1236_H
-
-#define PART_TM4C1236H6PM
-#define TARGET_IS_TM4C123_RA1
+#pragma once
 
 #include <driverlib/epi.h>
 #include <driverlib/gpio.h>
@@ -45,23 +41,3 @@
 #include <inc/hw_udma.h>
 #include <inc/hw_usb.h>
 #include <inc/hw_watchdog.h>
-
-#ifdef __cplusplus
-
-inline constexpr void DisablePeripheral(size_t periph) {
-    ROM_SysCtlPeripheralDisable(periph);
-}
-
-inline constexpr void EnablePeripheral(size_t periph) {
-    if (!ROM_SysCtlPeripheralReady(periph)) {
-        ROM_SysCtlPeripheralDisable(periph);
-        ROM_SysCtlDelay(10);
-        ROM_SysCtlPeripheralEnable(periph);
-        while (!ROM_SysCtlPeripheralReady(periph)) {
-        }
-    }
-}
-
-#endif
-
-#endif
