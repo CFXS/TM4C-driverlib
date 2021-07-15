@@ -15,3 +15,7 @@ file(GLOB_RECURSE driverlib_headers CONFIGURE_DEPENDS
 
 add_library(TM4C_driverlib ${driverlib_sources} ${driverlib_headers})
 target_include_directories(TM4C_driverlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_compile_options(TM4C_driverlib PRIVATE
+  -Wno-register
+)

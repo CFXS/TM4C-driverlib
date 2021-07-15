@@ -9,7 +9,6 @@
 #include <driverlib/sysctl.h>
 #include <driverlib/timer.h>
 #include <driverlib/udma.h>
-#include <inc/asmdefs.h>
 #include <inc/hw_adc.h>
 #include <inc/hw_aes.h>
 #include <inc/hw_can.h>

@@ -4438,7 +4438,10 @@ EMACRemoteWakeUpFrameFilterSet(uint32_t ui32Base,
     //
     // Get a word pointer to the supplied structure.
     //
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
     pui32Data = (uint32_t *)pFilter;
+    #pragma GCC diagnostic pop
 
     //
     // Write the 8 words of the wake-up filter definition to the hardware.
@@ -4520,8 +4523,11 @@ EMACRemoteWakeUpFrameFilterGet(uint32_t ui32Base,
 
     //
     // Get a word pointer to the supplied structure.
-    //
+    //    
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
     pui32Data = (uint32_t *)pFilter;
+    #pragma GCC diagnostic pop
 
     //
     // Read the 8 words of the wake-up filter definition from the hardware.
