@@ -9,6 +9,7 @@
 #include <driverlib/sysctl.h>
 #include <driverlib/timer.h>
 #include <driverlib/udma.h>
+#include <driverlib/emac.h>
 #include <inc/hw_adc.h>
 #include <inc/hw_aes.h>
 #include <inc/hw_can.h>
