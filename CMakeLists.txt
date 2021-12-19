@@ -16,11 +16,11 @@ file(GLOB_RECURSE headers CONFIGURE_DEPENDS
 set_source_files_properties(${sources} PROPERTIES LANGUAGE C)
 set_source_files_properties(${headers} PROPERTIES LANGUAGE C)
 
-add_library(TM4C_driverlib ${sources})
-target_include_directories(TM4C_driverlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(tm4c_driverlib ${sources})
+target_include_directories(tm4c_driverlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_precompile_headers(
-  TM4C_driverlib
+  tm4c_driverlib
   PUBLIC
   <stddef.h>
   <stdint.h>
