@@ -5,23 +5,23 @@
 //
 // Copyright (c) 2006-2017 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
-// 
+//
 //   Redistribution and use in source and binary forms, with or without
 //   modification, are permitted provided that the following conditions
 //   are met:
-// 
+//
 //   Redistributions of source code must retain the above copyright
 //   notice, this list of conditions and the following disclaimer.
-// 
+//
 //   Redistributions in binary form must reproduce the above copyright
 //   notice, this list of conditions and the following disclaimer in the
-//   documentation and/or other materials provided with the  
+//   documentation and/or other materials provided with the
 //   distribution.
-// 
+//
 //   Neither the name of Texas Instruments Incorporated nor the names of
 //   its contributors may be used to endorse or promote products derived
 //   from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -33,7 +33,7 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 // This is part of revision 2.1.4.178 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
@@ -47,10 +47,8 @@
 // on entry.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-uint32_t __attribute__((naked))
-CPUcpsid(void)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+uint32_t __attribute__((naked)) CPUcpsid(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -60,9 +58,7 @@ CPUcpsid(void)
 }
 #endif
 #if defined(ewarm)
-uint32_t
-CPUcpsid(void)
-{
+uint32_t CPUcpsid(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -74,26 +70,22 @@ CPUcpsid(void)
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t
-CPUcpsid(void)
-{
+__asm uint32_t CPUcpsid(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
-    mrs     r0, PRIMASK;
-    cpsid   i;
-    bx      lr
+    mrs r0, PRIMASK;
+    cpsid i;
+    bx lr
 }
 #endif
 #if defined(ccs)
-uint32_t
-CPUcpsid(void)
-{
+uint32_t CPUcpsid(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -108,7 +100,7 @@ CPUcpsid(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return (0);
 }
 #endif
 
@@ -118,10 +110,8 @@ CPUcpsid(void)
 // interrupts are enabled or disabled).
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-uint32_t __attribute__((naked))
-CPUprimask(void)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+uint32_t __attribute__((naked)) CPUprimask(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -130,9 +120,7 @@ CPUprimask(void)
 }
 #endif
 #if defined(ewarm)
-uint32_t
-CPUprimask(void)
-{
+uint32_t CPUprimask(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -143,25 +131,21 @@ CPUprimask(void)
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t
-CPUprimask(void)
-{
+__asm uint32_t CPUprimask(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
-    mrs     r0, PRIMASK;
-    bx      lr
+    mrs r0, PRIMASK;
+    bx lr
 }
 #endif
 #if defined(ccs)
-uint32_t
-CPUprimask(void)
-{
+uint32_t CPUprimask(void) {
     //
     // Read PRIMASK and disable interrupts.
     //
@@ -175,7 +159,7 @@ CPUprimask(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return (0);
 }
 #endif
 
@@ -185,10 +169,8 @@ CPUprimask(void)
 // on entry.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-uint32_t __attribute__((naked))
-CPUcpsie(void)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+uint32_t __attribute__((naked)) CPUcpsie(void) {
     //
     // Read PRIMASK and enable interrupts.
     //
@@ -198,9 +180,7 @@ CPUcpsie(void)
 }
 #endif
 #if defined(ewarm)
-uint32_t
-CPUcpsie(void)
-{
+uint32_t CPUcpsie(void) {
     //
     // Read PRIMASK and enable interrupts.
     //
@@ -212,26 +192,22 @@ CPUcpsie(void)
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t
-CPUcpsie(void)
-{
+__asm uint32_t CPUcpsie(void) {
     //
     // Read PRIMASK and enable interrupts.
     //
-    mrs     r0, PRIMASK;
-    cpsie   i;
-    bx      lr
+    mrs r0, PRIMASK;
+    cpsie i;
+    bx lr
 }
 #endif
 #if defined(ccs)
-uint32_t
-CPUcpsie(void)
-{
+uint32_t CPUcpsie(void) {
     //
     // Read PRIMASK and enable interrupts.
     //
@@ -246,7 +222,7 @@ CPUcpsie(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return (0);
 }
 #endif
 
@@ -255,10 +231,8 @@ CPUcpsie(void)
 // Wrapper function for the WFI instruction.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-void __attribute__((naked))
-CPUwfi(void)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+void __attribute__((naked)) CPUwfi(void) {
     //
     // Wait for the next interrupt.
     //
@@ -267,9 +241,7 @@ CPUwfi(void)
 }
 #endif
 #if defined(ewarm)
-void
-CPUwfi(void)
-{
+void CPUwfi(void) {
     //
     // Wait for the next interrupt.
     //
@@ -277,20 +249,16 @@ CPUwfi(void)
 }
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm void
-CPUwfi(void)
-{
+__asm void CPUwfi(void) {
     //
     // Wait for the next interrupt.
     //
     wfi;
-    bx      lr
+    bx lr
 }
 #endif
 #if defined(ccs)
-void
-CPUwfi(void)
-{
+void CPUwfi(void) {
     //
     // Wait for the next interrupt.
     //
@@ -303,10 +271,8 @@ CPUwfi(void)
 // Wrapper function for writing the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-void __attribute__((naked))
-CPUbasepriSet(uint32_t ui32NewBasepri)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+void __attribute__((naked)) CPUbasepriSet(uint32_t ui32NewBasepri) {
     //
     // Set the BASEPRI register
     //
@@ -315,9 +281,7 @@ CPUbasepriSet(uint32_t ui32NewBasepri)
 }
 #endif
 #if defined(ewarm)
-void
-CPUbasepriSet(uint32_t ui32NewBasepri)
-{
+void CPUbasepriSet(uint32_t ui32NewBasepri) {
     //
     // Set the BASEPRI register
     //
@@ -325,20 +289,16 @@ CPUbasepriSet(uint32_t ui32NewBasepri)
 }
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm void
-CPUbasepriSet(uint32_t ui32NewBasepri)
-{
+__asm void CPUbasepriSet(uint32_t ui32NewBasepri) {
     //
     // Set the BASEPRI register
     //
-    msr     BASEPRI, r0;
-    bx      lr
+    msr BASEPRI, r0;
+    bx lr
 }
 #endif
 #if defined(ccs)
-void
-CPUbasepriSet(uint32_t ui32NewBasepri)
-{
+void CPUbasepriSet(uint32_t ui32NewBasepri) {
     //
     // Set the BASEPRI register
     //
@@ -351,10 +311,8 @@ CPUbasepriSet(uint32_t ui32NewBasepri)
 // Wrapper function for reading the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(sourcerygxx)
-uint32_t __attribute__((naked))
-CPUbasepriGet(void)
-{
+#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+uint32_t __attribute__((naked)) CPUbasepriGet(void) {
     //
     // Read BASEPRI
     //
@@ -363,9 +321,7 @@ CPUbasepriGet(void)
 }
 #endif
 #if defined(ewarm)
-uint32_t
-CPUbasepriGet(void)
-{
+uint32_t CPUbasepriGet(void) {
     //
     // Read BASEPRI
     //
@@ -376,25 +332,21 @@ CPUbasepriGet(void)
     // is suppressed here to avoid putting a "bx lr" in the inline assembly
     // above and a superfluous return statement here.
     //
-#pragma diag_suppress=Pe940
+    #pragma diag_suppress = Pe940
 }
-#pragma diag_default=Pe940
+    #pragma diag_default = Pe940
 #endif
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t
-CPUbasepriGet(void)
-{
+__asm uint32_t CPUbasepriGet(void) {
     //
     // Read BASEPRI
     //
-    mrs     r0, BASEPRI;
-    bx      lr
+    mrs r0, BASEPRI;
+    bx lr
 }
 #endif
 #if defined(ccs)
-uint32_t
-CPUbasepriGet(void)
-{
+uint32_t CPUbasepriGet(void) {
     //
     // Read BASEPRI
     //
@@ -408,6 +360,6 @@ CPUbasepriGet(void)
     // return(0) is never executed and the function returns with the value
     // you expect in R0.
     //
-    return(0);
+    return (0);
 }
 #endif

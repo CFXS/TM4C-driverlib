@@ -4,23 +4,23 @@
 //
 // Copyright (c) 2005-2017 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
-// 
+//
 //   Redistribution and use in source and binary forms, with or without
 //   modification, are permitted provided that the following conditions
 //   are met:
-// 
+//
 //   Redistributions of source code must retain the above copyright
 //   notice, this list of conditions and the following disclaimer.
-// 
+//
 //   Redistributions in binary form must reproduce the above copyright
 //   notice, this list of conditions and the following disclaimer in the
-//   documentation and/or other materials provided with the  
+//   documentation and/or other materials provided with the
 //   distribution.
-// 
+//
 //   Neither the name of Texas Instruments Incorporated nor the names of
 //   its contributors may be used to endorse or promote products derived
 //   from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -32,7 +32,7 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 // This is part of revision 2.1.4.178 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
@@ -59,12 +59,14 @@
 // preemption priority bits.
 //
 //*****************************************************************************
-static const uint32_t g_pui32Priority[] =
-{
-    NVIC_APINT_PRIGROUP_0_8, NVIC_APINT_PRIGROUP_1_7, NVIC_APINT_PRIGROUP_2_6,
-    NVIC_APINT_PRIGROUP_3_5, NVIC_APINT_PRIGROUP_4_4, NVIC_APINT_PRIGROUP_5_3,
-    NVIC_APINT_PRIGROUP_6_2, NVIC_APINT_PRIGROUP_7_1
-};
+static const uint32_t g_pui32Priority[] = {NVIC_APINT_PRIGROUP_0_8,
+                                           NVIC_APINT_PRIGROUP_1_7,
+                                           NVIC_APINT_PRIGROUP_2_6,
+                                           NVIC_APINT_PRIGROUP_3_5,
+                                           NVIC_APINT_PRIGROUP_4_4,
+                                           NVIC_APINT_PRIGROUP_5_3,
+                                           NVIC_APINT_PRIGROUP_6_2,
+                                           NVIC_APINT_PRIGROUP_7_1};
 
 //*****************************************************************************
 //
@@ -72,16 +74,11 @@ static const uint32_t g_pui32Priority[] =
 // the priority encoding for that interrupt.
 //
 //*****************************************************************************
-static const uint32_t g_pui32Regs[] =
-{
-    0, NVIC_SYS_PRI1, NVIC_SYS_PRI2, NVIC_SYS_PRI3, NVIC_PRI0, NVIC_PRI1,
-    NVIC_PRI2, NVIC_PRI3, NVIC_PRI4, NVIC_PRI5, NVIC_PRI6, NVIC_PRI7,
-    NVIC_PRI8, NVIC_PRI9, NVIC_PRI10, NVIC_PRI11, NVIC_PRI12, NVIC_PRI13,
-    NVIC_PRI14, NVIC_PRI15, NVIC_PRI16, NVIC_PRI17, NVIC_PRI18, NVIC_PRI19,
-    NVIC_PRI20, NVIC_PRI21, NVIC_PRI22, NVIC_PRI23, NVIC_PRI24, NVIC_PRI25,
-    NVIC_PRI26, NVIC_PRI27, NVIC_PRI28, NVIC_PRI29, NVIC_PRI30, NVIC_PRI31,
-    NVIC_PRI32, NVIC_PRI33, NVIC_PRI34
-};
+static const uint32_t g_pui32Regs[] = {
+    0,          NVIC_SYS_PRI1, NVIC_SYS_PRI2, NVIC_SYS_PRI3, NVIC_PRI0,  NVIC_PRI1,  NVIC_PRI2,  NVIC_PRI3,  NVIC_PRI4,  NVIC_PRI5,
+    NVIC_PRI6,  NVIC_PRI7,     NVIC_PRI8,     NVIC_PRI9,     NVIC_PRI10, NVIC_PRI11, NVIC_PRI12, NVIC_PRI13, NVIC_PRI14, NVIC_PRI15,
+    NVIC_PRI16, NVIC_PRI17,    NVIC_PRI18,    NVIC_PRI19,    NVIC_PRI20, NVIC_PRI21, NVIC_PRI22, NVIC_PRI23, NVIC_PRI24, NVIC_PRI25,
+    NVIC_PRI26, NVIC_PRI27,    NVIC_PRI28,    NVIC_PRI29,    NVIC_PRI30, NVIC_PRI31, NVIC_PRI32, NVIC_PRI33, NVIC_PRI34};
 
 //*****************************************************************************
 //
@@ -90,10 +87,7 @@ static const uint32_t g_pui32Regs[] =
 // interrupt.
 //
 //*****************************************************************************
-static const uint32_t g_pui32EnRegs[] =
-{
-    NVIC_EN0, NVIC_EN1, NVIC_EN2, NVIC_EN3, NVIC_EN4
-};
+static const uint32_t g_pui32EnRegs[] = {NVIC_EN0, NVIC_EN1, NVIC_EN2, NVIC_EN3, NVIC_EN4};
 
 //*****************************************************************************
 //
@@ -102,10 +96,7 @@ static const uint32_t g_pui32EnRegs[] =
 // interrupt.
 //
 //*****************************************************************************
-static const uint32_t g_pui32Dii16Regs[] =
-{
-    NVIC_DIS0, NVIC_DIS1, NVIC_DIS2, NVIC_DIS3, NVIC_DIS4
-};
+static const uint32_t g_pui32Dii16Regs[] = {NVIC_DIS0, NVIC_DIS1, NVIC_DIS2, NVIC_DIS3, NVIC_DIS4};
 
 //*****************************************************************************
 //
@@ -113,10 +104,7 @@ static const uint32_t g_pui32Dii16Regs[] =
 // only) and the register that contains the interrupt pend for that interrupt.
 //
 //*****************************************************************************
-static const uint32_t g_pui32PendRegs[] =
-{
-    NVIC_PEND0, NVIC_PEND1, NVIC_PEND2, NVIC_PEND3, NVIC_PEND4
-};
+static const uint32_t g_pui32PendRegs[] = {NVIC_PEND0, NVIC_PEND1, NVIC_PEND2, NVIC_PEND3, NVIC_PEND4};
 
 //*****************************************************************************
 //
@@ -125,10 +113,7 @@ static const uint32_t g_pui32PendRegs[] =
 // interrupt.
 //
 //*****************************************************************************
-static const uint32_t g_pui32UnpendRegs[] =
-{
-    NVIC_UNPEND0, NVIC_UNPEND1, NVIC_UNPEND2, NVIC_UNPEND3, NVIC_UNPEND4
-};
+static const uint32_t g_pui32UnpendRegs[] = {NVIC_UNPEND0, NVIC_UNPEND1, NVIC_UNPEND2, NVIC_UNPEND3, NVIC_UNPEND4};
 
 //*****************************************************************************
 //
@@ -143,14 +128,11 @@ static const uint32_t g_pui32UnpendRegs[] =
 //! \return None.
 //
 //*****************************************************************************
-static void
-_IntDefaultHandler(void)
-{
+static void _IntDefaultHandler(void) {
     //
     // Go into an infinite loop.
     //
-    while(1)
-    {
+    while (1) {
     }
 }
 
@@ -169,20 +151,18 @@ _IntDefaultHandler(void)
 // any device
 //
 #undef NUM_INTERRUPTS
-#define NUM_INTERRUPTS                          155
+#define NUM_INTERRUPTS 155
 #if defined(ewarm)
-#pragma data_alignment=1024
+    #pragma data_alignment = 1024
 static __no_init void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) @ "VTABLE";
 #elif defined(sourcerygxx)
-static __attribute__((section(".cs3.region-head.ram")))
-void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) __attribute__ ((aligned(1024)));
+static __attribute__((section(".cs3.region-head.ram"))) void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) __attribute__((aligned(1024)));
 #elif defined(ccs) || defined(DOXYGEN)
-#pragma DATA_ALIGN(g_pfnRAMVectors, 1024)
-#pragma DATA_SECTION(g_pfnRAMVectors, ".vtable")
+    #pragma DATA_ALIGN(g_pfnRAMVectors, 1024)
+    #pragma DATA_SECTION(g_pfnRAMVectors, ".vtable")
 void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void);
 #else
-static __attribute__((section("vtable")))
-void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) __attribute__((aligned(1024)));
+static __attribute__((section(".noinit"))) void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) __attribute__((aligned(1024)));
 #endif
 
 //*****************************************************************************
@@ -207,13 +187,11 @@ void (*g_pfnRAMVectors[NUM_INTERRUPTS])(void) __attribute__((aligned(1024)));
 //! called or \b false if they were initially enabled.
 //
 //*****************************************************************************
-bool
-IntMasterEnable(void)
-{
+bool IntMasterEnable(void) {
     //
     // Enable processor interrupts.
     //
-    return(CPUcpsie());
+    return (CPUcpsie());
 }
 
 //*****************************************************************************
@@ -245,13 +223,11 @@ IntMasterEnable(void)
 //! function was called or \b false if they were initially enabled.
 //
 //*****************************************************************************
-bool
-IntMasterDisable(void)
-{
+bool IntMasterDisable(void) {
     //
     // Disable processor interrupts.
     //
-    return(CPUcpsid());
+    return (CPUcpsid());
 }
 
 //*****************************************************************************
@@ -305,9 +281,7 @@ IntMasterDisable(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void))
-{
+void IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void)) {
     uint32_t ui32Idx, ui32Value;
 
     //
@@ -323,17 +297,14 @@ IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void))
     //
     // See if the RAM vector table has been initialized.
     //
-    if(HWREG(NVIC_VTABLE) != (uint32_t)g_pfnRAMVectors)
-    {
+    if (HWREG(NVIC_VTABLE) != (uint32_t)g_pfnRAMVectors) {
         //
         // Copy the vector table from the beginning of FLASH to the RAM vector
         // table.
         //
         ui32Value = HWREG(NVIC_VTABLE);
-        for(ui32Idx = 0; ui32Idx < NUM_INTERRUPTS; ui32Idx++)
-        {
-            g_pfnRAMVectors[ui32Idx] = (void (*)(void))HWREG((ui32Idx * 4) +
-                                                             ui32Value);
+        for (ui32Idx = 0; ui32Idx < NUM_INTERRUPTS; ui32Idx++) {
+            g_pfnRAMVectors[ui32Idx] = (void (*)(void))HWREG((ui32Idx * 4) + ui32Value);
         }
 
         //
@@ -377,9 +348,7 @@ IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-void
-IntUnregister(uint32_t ui32Interrupt)
-{
+void IntUnregister(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -417,9 +386,7 @@ IntUnregister(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntPriorityGroupingSet(uint32_t ui32Bits)
-{
+void IntPriorityGroupingSet(uint32_t ui32Bits) {
     //
     // Check the arguments.
     //
@@ -451,9 +418,7 @@ IntPriorityGroupingSet(uint32_t ui32Bits)
 //! \return The number of bits of preemptable priority.
 //
 //*****************************************************************************
-uint32_t
-IntPriorityGroupingGet(void)
-{
+uint32_t IntPriorityGroupingGet(void) {
     uint32_t ui32Loop, ui32Value;
 
     //
@@ -464,13 +429,11 @@ IntPriorityGroupingGet(void)
     //
     // Loop through the priority grouping values.
     //
-    for(ui32Loop = 0; ui32Loop < NUM_PRIORITY; ui32Loop++)
-    {
+    for (ui32Loop = 0; ui32Loop < NUM_PRIORITY; ui32Loop++) {
         //
         // Stop looping if this value matches.
         //
-        if(ui32Value == g_pui32Priority[ui32Loop])
-        {
+        if (ui32Value == g_pui32Priority[ui32Loop]) {
             break;
         }
     }
@@ -478,7 +441,7 @@ IntPriorityGroupingGet(void)
     //
     // Return the number of priority bits.
     //
-    return(ui32Loop);
+    return (ui32Loop);
 }
 
 //*****************************************************************************
@@ -523,9 +486,7 @@ IntPriorityGroupingGet(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntPrioritySet(uint32_t ui32Interrupt, uint8_t ui8Priority)
-{
+void IntPrioritySet(uint32_t ui32Interrupt, uint8_t ui8Priority) {
     uint32_t ui32Temp;
 
     //
@@ -566,9 +527,7 @@ IntPrioritySet(uint32_t ui32Interrupt, uint8_t ui8Priority)
 //! \return Returns the interrupt priority for the given interrupt.
 //
 //*****************************************************************************
-int32_t
-IntPriorityGet(uint32_t ui32Interrupt)
-{
+int32_t IntPriorityGet(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -577,8 +536,7 @@ IntPriorityGet(uint32_t ui32Interrupt)
     //
     // Return the interrupt priority.
     //
-    return((HWREG(g_pui32Regs[ui32Interrupt >> 2]) >>
-            (8 * (ui32Interrupt & 3))) & 0xFF);
+    return ((HWREG(g_pui32Regs[ui32Interrupt >> 2]) >> (8 * (ui32Interrupt & 3))) & 0xFF);
 }
 
 //*****************************************************************************
@@ -606,9 +564,7 @@ IntPriorityGet(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntEnable(uint32_t ui32Interrupt)
-{
+void IntEnable(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -617,41 +573,31 @@ IntEnable(uint32_t ui32Interrupt)
     //
     // Determine the interrupt to enable.
     //
-    if(ui32Interrupt == FAULT_MPU)
-    {
+    if (ui32Interrupt == FAULT_MPU) {
         //
         // Enable the MemManage interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_MEM;
-    }
-    else if(ui32Interrupt == FAULT_BUS)
-    {
+    } else if (ui32Interrupt == FAULT_BUS) {
         //
         // Enable the bus fault interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_BUS;
-    }
-    else if(ui32Interrupt == FAULT_USAGE)
-    {
+    } else if (ui32Interrupt == FAULT_USAGE) {
         //
         // Enable the usage fault interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) |= NVIC_SYS_HND_CTRL_USAGE;
-    }
-    else if(ui32Interrupt == FAULT_SYSTICK)
-    {
+    } else if (ui32Interrupt == FAULT_SYSTICK) {
         //
         // Enable the System Tick interrupt.
         //
         HWREG(NVIC_ST_CTRL) |= NVIC_ST_CTRL_INTEN;
-    }
-    else if(ui32Interrupt >= 16)
-    {
+    } else if (ui32Interrupt >= 16) {
         //
         // Enable the general interrupt.
         //
-        HWREG(g_pui32EnRegs[(ui32Interrupt - 16) / 32]) =
-            1 << ((ui32Interrupt - 16) & 31);
+        HWREG(g_pui32EnRegs[(ui32Interrupt - 16) / 32]) = 1 << ((ui32Interrupt - 16) & 31);
     }
 }
 
@@ -680,9 +626,7 @@ IntEnable(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntDisable(uint32_t ui32Interrupt)
-{
+void IntDisable(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -691,41 +635,31 @@ IntDisable(uint32_t ui32Interrupt)
     //
     // Determine the interrupt to disable.
     //
-    if(ui32Interrupt == FAULT_MPU)
-    {
+    if (ui32Interrupt == FAULT_MPU) {
         //
         // Disable the MemManage interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_MEM);
-    }
-    else if(ui32Interrupt == FAULT_BUS)
-    {
+    } else if (ui32Interrupt == FAULT_BUS) {
         //
         // Disable the bus fault interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_BUS);
-    }
-    else if(ui32Interrupt == FAULT_USAGE)
-    {
+    } else if (ui32Interrupt == FAULT_USAGE) {
         //
         // Disable the usage fault interrupt.
         //
         HWREG(NVIC_SYS_HND_CTRL) &= ~(NVIC_SYS_HND_CTRL_USAGE);
-    }
-    else if(ui32Interrupt == FAULT_SYSTICK)
-    {
+    } else if (ui32Interrupt == FAULT_SYSTICK) {
         //
         // Disable the System Tick interrupt.
         //
         HWREG(NVIC_ST_CTRL) &= ~(NVIC_ST_CTRL_INTEN);
-    }
-    else if(ui32Interrupt >= 16)
-    {
+    } else if (ui32Interrupt >= 16) {
         //
         // Disable the general interrupt.
         //
-        HWREG(g_pui32Dii16Regs[(ui32Interrupt - 16) / 32]) =
-            1 << ((ui32Interrupt - 16) & 31);
+        HWREG(g_pui32Dii16Regs[(ui32Interrupt - 16) / 32]) = 1 << ((ui32Interrupt - 16) & 31);
     }
 }
 
@@ -755,9 +689,7 @@ IntDisable(uint32_t ui32Interrupt)
 //! \return A non-zero value if the interrupt is enabled.
 //
 //*****************************************************************************
-uint32_t
-IntIsEnabled(uint32_t ui32Interrupt)
-{
+uint32_t IntIsEnabled(uint32_t ui32Interrupt) {
     uint32_t ui32Ret;
 
     //
@@ -773,43 +705,33 @@ IntIsEnabled(uint32_t ui32Interrupt)
     //
     // Determine the interrupt to disable.
     //
-    if(ui32Interrupt == FAULT_MPU)
-    {
+    if (ui32Interrupt == FAULT_MPU) {
         //
         // Check the MemManage interrupt.
         //
         ui32Ret = HWREG(NVIC_SYS_HND_CTRL) & NVIC_SYS_HND_CTRL_MEM;
-    }
-    else if(ui32Interrupt == FAULT_BUS)
-    {
+    } else if (ui32Interrupt == FAULT_BUS) {
         //
         // Check the bus fault interrupt.
         //
         ui32Ret = HWREG(NVIC_SYS_HND_CTRL) & NVIC_SYS_HND_CTRL_BUS;
-    }
-    else if(ui32Interrupt == FAULT_USAGE)
-    {
+    } else if (ui32Interrupt == FAULT_USAGE) {
         //
         // Check the usage fault interrupt.
         //
         ui32Ret = HWREG(NVIC_SYS_HND_CTRL) & NVIC_SYS_HND_CTRL_USAGE;
-    }
-    else if(ui32Interrupt == FAULT_SYSTICK)
-    {
+    } else if (ui32Interrupt == FAULT_SYSTICK) {
         //
         // Check the System Tick interrupt.
         //
         ui32Ret = HWREG(NVIC_ST_CTRL) & NVIC_ST_CTRL_INTEN;
-    }
-    else if(ui32Interrupt >= 16)
-    {
+    } else if (ui32Interrupt >= 16) {
         //
         // Check the general interrupt.
         //
-        ui32Ret = HWREG(g_pui32EnRegs[(ui32Interrupt - 16) / 32]) &
-                  (1 << ((ui32Interrupt - 16) & 31));
+        ui32Ret = HWREG(g_pui32EnRegs[(ui32Interrupt - 16) / 32]) & (1 << ((ui32Interrupt - 16) & 31));
     }
-    return(ui32Ret);
+    return (ui32Ret);
 }
 
 //*****************************************************************************
@@ -840,9 +762,7 @@ IntIsEnabled(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntPendSet(uint32_t ui32Interrupt)
-{
+void IntPendSet(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -851,34 +771,26 @@ IntPendSet(uint32_t ui32Interrupt)
     //
     // Determine the interrupt to pend.
     //
-    if(ui32Interrupt == FAULT_NMI)
-    {
+    if (ui32Interrupt == FAULT_NMI) {
         //
         // Pend the NMI interrupt.
         //
         HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_NMI_SET;
-    }
-    else if(ui32Interrupt == FAULT_PENDSV)
-    {
+    } else if (ui32Interrupt == FAULT_PENDSV) {
         //
         // Pend the PendSV interrupt.
         //
         HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PEND_SV;
-    }
-    else if(ui32Interrupt == FAULT_SYSTICK)
-    {
+    } else if (ui32Interrupt == FAULT_SYSTICK) {
         //
         // Pend the SysTick interrupt.
         //
         HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PENDSTSET;
-    }
-    else if(ui32Interrupt >= 16)
-    {
+    } else if (ui32Interrupt >= 16) {
         //
         // Pend the general interrupt.
         //
-        HWREG(g_pui32PendRegs[(ui32Interrupt - 16) / 32]) =
-            1 << ((ui32Interrupt - 16) & 31);
+        HWREG(g_pui32PendRegs[(ui32Interrupt - 16) / 32]) = 1 << ((ui32Interrupt - 16) & 31);
     }
 }
 
@@ -908,9 +820,7 @@ IntPendSet(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntPendClear(uint32_t ui32Interrupt)
-{
+void IntPendClear(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
@@ -919,27 +829,21 @@ IntPendClear(uint32_t ui32Interrupt)
     //
     // Determine the interrupt to unpend.
     //
-    if(ui32Interrupt == FAULT_PENDSV)
-    {
+    if (ui32Interrupt == FAULT_PENDSV) {
         //
         // Unpend the PendSV interrupt.
         //
         HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_UNPEND_SV;
-    }
-    else if(ui32Interrupt == FAULT_SYSTICK)
-    {
+    } else if (ui32Interrupt == FAULT_SYSTICK) {
         //
         // Unpend the SysTick interrupt.
         //
         HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PENDSTCLR;
-    }
-    else if(ui32Interrupt >= 16)
-    {
+    } else if (ui32Interrupt >= 16) {
         //
         // Unpend the general interrupt.
         //
-        HWREG(g_pui32UnpendRegs[(ui32Interrupt - 16) / 32]) =
-            1 << ((ui32Interrupt - 16) & 31);
+        HWREG(g_pui32UnpendRegs[(ui32Interrupt - 16) / 32]) = 1 << ((ui32Interrupt - 16) & 31);
     }
 }
 
@@ -974,9 +878,7 @@ IntPendClear(uint32_t ui32Interrupt)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntPriorityMaskSet(uint32_t ui32PriorityMask)
-{
+void IntPriorityMaskSet(uint32_t ui32PriorityMask) {
     //
     // Set the priority mask.
     //
@@ -1011,13 +913,11 @@ IntPriorityMaskSet(uint32_t ui32PriorityMask)
 //! \return Returns the value of the interrupt priority level mask.
 //
 //*****************************************************************************
-uint32_t
-IntPriorityMaskGet(void)
-{
+uint32_t IntPriorityMaskGet(void) {
     //
     // Return the current priority mask.
     //
-    return(CPUbasepriGet());
+    return (CPUbasepriGet());
 }
 
 //*****************************************************************************
@@ -1038,9 +938,7 @@ IntPriorityMaskGet(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-IntTrigger(uint32_t ui32Interrupt)
-{
+void IntTrigger(uint32_t ui32Interrupt) {
     //
     // Check the arguments.
     //
