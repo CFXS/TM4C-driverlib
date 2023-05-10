@@ -51,7 +51,7 @@
 extern "C" {
 #endif
 
-void __error__(char *pcFilename, uint32_t ui32Line);
+extern void __error__(char *pcFilename, uint32_t ui32Line);
 
 #ifdef __cplusplus
 }
@@ -64,14 +64,14 @@ void __error__(char *pcFilename, uint32_t ui32Line);
 //
 //*****************************************************************************
 #ifdef DEBUG
-#define ASSERT(expr)                       \
-    do {                                   \
-        if (!(expr)) {                     \
-            __error__(__FILE__, __LINE__); \
-        }                                  \
-    } while (0)
+    #define ASSERT(expr)                       \
+        do {                                   \
+            if (!(expr)) {                     \
+                __error__(__FILE__, __LINE__); \
+            }                                  \
+        } while (0)
 #else
-#define ASSERT(expr)
+    #define ASSERT(expr)
 #endif
 
 #endif // __DRIVERLIB_DEBUG_H__
