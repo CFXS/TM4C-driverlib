@@ -1,0 +1,4 @@
+printf("Load TM4C driverlib")
+tm4c_driverlib = create_library("TM4C driverlib")
+tm4c_driverlib:add_include_paths("public", {"./"})
+tm4c_driverlib:add_sources("./src/**.c")
