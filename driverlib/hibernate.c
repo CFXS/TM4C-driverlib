@@ -2132,7 +2132,7 @@ HibernateTamperIODisable(uint32_t ui32Input)
     //
     // Clear the I/O enable bit.
     //
-    HWREG(HIB_TPIO) &= ((~HIB_TPIO_EN0) << (ui32Input << 3));
+    HWREG(HIB_TPIO) &= ((((uint32_t)~HIB_TPIO_EN0)) << (ui32Input << 3));
 
     //
     // Wait for write completion.
