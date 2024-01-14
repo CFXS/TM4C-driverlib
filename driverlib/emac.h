@@ -861,11 +861,7 @@ typedef struct
     //
     uint16_t pui16CRC[4];
 }
-#if defined(ccs) ||             \
-    defined(codered) ||         \
-    defined(gcc) ||             \
-    defined(rvmdk) ||           \
-    defined(__ARMCC_VERSION) || \
+#if defined(ccs) || defined(codered) || defined(gcc) || defined(__clang__) || defined(rvmdk) || defined(__ARMCC_VERSION) || \
     defined(sourcerygxx)
 __attribute__ ((packed)) tEMACWakeUpFrameFilter;
 #else

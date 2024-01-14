@@ -1625,7 +1625,7 @@ void SysCtlDelay(uint32_t ui32Count) {
           "    bx      lr");
 }
 #endif
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 void __attribute__((naked)) SysCtlDelay(uint32_t ui32Count) {
     __asm("    subs    r0, #1\n"
           "    bne     SysCtlDelay\n"

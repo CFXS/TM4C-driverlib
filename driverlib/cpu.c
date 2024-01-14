@@ -47,7 +47,7 @@
 // on entry.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 uint32_t __attribute__((naked)) CPUcpsid(void) {
     //
     // Read PRIMASK and disable interrupts.
@@ -110,7 +110,7 @@ uint32_t CPUcpsid(void) {
 // interrupts are enabled or disabled).
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 uint32_t __attribute__((naked)) CPUprimask(void) {
     //
     // Read PRIMASK and disable interrupts.
@@ -169,7 +169,7 @@ uint32_t CPUprimask(void) {
 // on entry.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 uint32_t __attribute__((naked)) CPUcpsie(void) {
     //
     // Read PRIMASK and enable interrupts.
@@ -231,7 +231,7 @@ uint32_t CPUcpsie(void) {
 // Wrapper function for the WFI instruction.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 void __attribute__((naked)) CPUwfi(void) {
     //
     // Wait for the next interrupt.
@@ -271,7 +271,7 @@ void CPUwfi(void) {
 // Wrapper function for writing the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 void __attribute__((naked)) CPUbasepriSet(uint32_t ui32NewBasepri) {
     //
     // Set the BASEPRI register
@@ -311,7 +311,7 @@ void CPUbasepriSet(uint32_t ui32NewBasepri) {
 // Wrapper function for reading the BASEPRI register.
 //
 //*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(clang) || defined(sourcerygxx)
+#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
 uint32_t __attribute__((naked)) CPUbasepriGet(void) {
     //
     // Read BASEPRI
