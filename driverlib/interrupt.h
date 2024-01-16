@@ -66,8 +66,8 @@ extern "C"
 //*****************************************************************************
 extern bool IntMasterEnable(void);
 extern bool IntMasterDisable(void);
-extern void IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void));
-extern void IntUnregister(uint32_t ui32Interrupt);
+extern void IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void)); // NOLINT
+extern void IntUnregister(uint32_t ui32Interrupt);                         // NOLINT
 extern void IntPriorityGroupingSet(uint32_t ui32Bits);
 extern uint32_t IntPriorityGroupingGet(void);
 extern void IntPrioritySet(uint32_t ui32Interrupt,

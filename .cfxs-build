@@ -6,3 +6,9 @@ tm4c_driverlib:create_precompiled_header({
     "<stdint.h>",
     "<stddef.h>",
 })
+
+if _G.CFXS_TOOLCHAIN == "GCC" or _G.CFXS_TOOLCHAIN == "Clang" then
+    tm4c_driverlib:add_compile_options("private", {
+        "-Wno-unused-parameter",
+    })
+end

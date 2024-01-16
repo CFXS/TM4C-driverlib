@@ -43,69 +43,6 @@
 
 //*****************************************************************************
 //
-// Wrapper function for the CPSID instruction.  Returns the state of PRIMASK
-// on entry.
-//
-//*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
-uint32_t __attribute__((naked)) CPUcpsid(void) {
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsid   i\n"
-          "    bx      lr\n");
-}
-#endif
-#if defined(ewarm)
-uint32_t CPUcpsid(void) {
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsid   i\n");
-
-    //
-    // "Warning[Pe940]: missing return statement at end of non-void function"
-    // is suppressed here to avoid putting a "bx lr" in the inline assembly
-    // above and a superfluous return statement here.
-    //
-    #pragma diag_suppress = Pe940
-}
-    #pragma diag_default = Pe940
-#endif
-#if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t CPUcpsid(void) {
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    mrs r0, PRIMASK;
-    cpsid i;
-    bx lr
-}
-#endif
-#if defined(ccs)
-uint32_t CPUcpsid(void) {
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsid   i\n"
-          "    bx      lr\n");
-
-    //
-    // The following keeps the compiler happy, because it wants to see a
-    // return value from this function.  It will generate code to return
-    // a zero.  However, the real return is the "bx lr" above, so the
-    // return(0) is never executed and the function returns with the value
-    // you expect in R0.
-    //
-    return (0);
-}
-#endif
-
-//*****************************************************************************
-//
 // Wrapper function returning the state of PRIMASK (indicating whether
 // interrupts are enabled or disabled).
 //
@@ -150,69 +87,6 @@ uint32_t CPUprimask(void) {
     // Read PRIMASK and disable interrupts.
     //
     __asm("    mrs     r0, PRIMASK\n"
-          "    bx      lr\n");
-
-    //
-    // The following keeps the compiler happy, because it wants to see a
-    // return value from this function.  It will generate code to return
-    // a zero.  However, the real return is the "bx lr" above, so the
-    // return(0) is never executed and the function returns with the value
-    // you expect in R0.
-    //
-    return (0);
-}
-#endif
-
-//*****************************************************************************
-//
-// Wrapper function for the CPSIE instruction.  Returns the state of PRIMASK
-// on entry.
-//
-//*****************************************************************************
-#if defined(codered) || defined(gcc) || defined(__clang__) || defined(sourcerygxx)
-uint32_t __attribute__((naked)) CPUcpsie(void) {
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsie   i\n"
-          "    bx      lr\n");
-}
-#endif
-#if defined(ewarm)
-uint32_t CPUcpsie(void) {
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsie   i\n");
-
-    //
-    // "Warning[Pe940]: missing return statement at end of non-void function"
-    // is suppressed here to avoid putting a "bx lr" in the inline assembly
-    // above and a superfluous return statement here.
-    //
-    #pragma diag_suppress = Pe940
-}
-    #pragma diag_default = Pe940
-#endif
-#if defined(rvmdk) || defined(__ARMCC_VERSION)
-__asm uint32_t CPUcpsie(void) {
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    mrs r0, PRIMASK;
-    cpsie i;
-    bx lr
-}
-#endif
-#if defined(ccs)
-uint32_t CPUcpsie(void) {
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsie   i\n"
           "    bx      lr\n");
 
     //

@@ -51,7 +51,7 @@
 extern "C" {
 #endif
 
-extern void __error__(char *pcFilename, uint32_t ui32Line);
+extern void __tiva_driverlib_error__(const char *file_name, uint32_t line);
 
 #ifdef __cplusplus
 }
@@ -64,11 +64,11 @@ extern void __error__(char *pcFilename, uint32_t ui32Line);
 //
 //*****************************************************************************
 #ifdef DEBUG
-    #define ASSERT(expr)                       \
-        do {                                   \
-            if (!(expr)) {                     \
-                __error__(__FILE__, __LINE__); \
-            }                                  \
+    #define ASSERT(expr)                                      \
+        do {                                                  \
+            if (!(expr)) {                                    \
+                __tiva_driverlib_error__(__FILE__, __LINE__); \
+            }                                                 \
         } while (0)
 #else
     #define ASSERT(expr)

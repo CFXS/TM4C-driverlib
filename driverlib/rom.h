@@ -40,6 +40,8 @@
 #ifndef __DRIVERLIB_ROM_H__
 #define __DRIVERLIB_ROM_H__
 
+// NOLINTBEGIN
+
 #ifndef DEPRECATED
 //*****************************************************************************
 //
@@ -8342,5 +8344,7 @@
 #define ROM_pvAESTable                                                        \
         ((void *)&(ROM_SOFTWARETABLE[7]))
 #endif
+
+// NOLINTEND
 
 #endif // __DRIVERLIB_ROM_H__
