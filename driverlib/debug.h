@@ -51,7 +51,7 @@
 extern "C" {
 #endif
 
-extern void __tiva_driverlib_error__(const char *file_name, uint32_t line);
+extern void __tiva_driverlib_error__(const char *file_name, int line);
 
 #ifdef __cplusplus
 }

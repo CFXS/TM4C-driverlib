@@ -4,23 +4,23 @@
 //
 // Copyright (c) 2007-2017 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
-// 
+//
 //   Redistribution and use in source and binary forms, with or without
 //   modification, are permitted provided that the following conditions
 //   are met:
-// 
+//
 //   Redistributions of source code must retain the above copyright
 //   notice, this list of conditions and the following disclaimer.
-// 
+//
 //   Redistributions in binary form must reproduce the above copyright
 //   notice, this list of conditions and the following disclaimer in the
-//   documentation and/or other materials provided with the  
+//   documentation and/or other materials provided with the
 //   distribution.
-// 
+//
 //   Neither the name of Texas Instruments Incorporated nor the names of
 //   its contributors may be used to endorse or promote products derived
 //   from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -32,7 +32,7 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 // This is part of revision 2.1.4.178 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
@@ -85,14 +85,11 @@
 //! \return None.
 //
 //*****************************************************************************
-void
-MPUEnable(uint32_t ui32MPUConfig)
-{
+void MPUEnable(uint32_t ui32MPUConfig) {
     //
     // Check the arguments.
     //
-    ASSERT(!(ui32MPUConfig & ~(MPU_CONFIG_PRIV_DEFAULT |
-                               MPU_CONFIG_HARDFLT_NMI)));
+    ASSERT(!(ui32MPUConfig & ~(MPU_CONFIG_PRIV_DEFAULT | MPU_CONFIG_HARDFLT_NMI)));
 
     //
     // Set the MPU control bits according to the flags passed by the user,
@@ -112,9 +109,7 @@ MPUEnable(uint32_t ui32MPUConfig)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPUDisable(void)
-{
+void MPUDisable(void) {
     //
     // Turn off the MPU enable bit.
     //
@@ -132,15 +127,12 @@ MPUDisable(void)
 //! for programming using MPURegionSet().
 //
 //*****************************************************************************
-uint32_t
-MPURegionCountGet(void)
-{
+uint32_t MPURegionCountGet(void) {
     //
     // Read the DREGION field of the MPU type register and mask off
     // the bits of interest to get the count of regions.
     //
-    return((HWREG(NVIC_MPU_TYPE) & NVIC_MPU_TYPE_DREGION_M) >>
-           NVIC_MPU_TYPE_DREGION_S);
+    return ((HWREG(NVIC_MPU_TYPE) & NVIC_MPU_TYPE_DREGION_M) >> NVIC_MPU_TYPE_DREGION_S);
 }
 
 //*****************************************************************************
@@ -157,9 +149,7 @@ MPURegionCountGet(void)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPURegionEnable(uint32_t ui32Region)
-{
+void MPURegionEnable(uint32_t ui32Region) {
     //
     // Check the arguments.
     //
@@ -190,9 +180,7 @@ MPURegionEnable(uint32_t ui32Region)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPURegionDisable(uint32_t ui32Region)
-{
+void MPURegionDisable(uint32_t ui32Region) {
     //
     // Check the arguments.
     //
@@ -317,15 +305,12 @@ MPURegionDisable(uint32_t ui32Region)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPURegionSet(uint32_t ui32Region, uint32_t ui32Addr, uint32_t ui32Flags)
-{
+void MPURegionSet(uint32_t ui32Region, uint32_t ui32Addr, uint32_t ui32Flags) {
     //
     // Check the arguments.
     //
     ASSERT(ui32Region < 8);
-    ASSERT(ui32Addr ==
-           (ui32Addr & ~0 << (((ui32Flags & NVIC_MPU_ATTR_SIZE_M) >> 1) + 1)));
+    ASSERT(ui32Addr == (ui32Addr & 0xFFFFFFFF << (((ui32Flags & NVIC_MPU_ATTR_SIZE_M) >> 1) + 1)));
 
     //
     // Program the base address, use the region field to select the
@@ -338,9 +323,8 @@ MPURegionSet(uint32_t ui32Region, uint32_t ui32Addr, uint32_t ui32Flags)
     // and B bits to fixed values that are suitable for all Tiva C and
     // E Series memory.
     //
-    HWREG(NVIC_MPU_ATTR) = ((ui32Flags & ~(NVIC_MPU_ATTR_TEX_M |
-                                           NVIC_MPU_ATTR_CACHEABLE)) |
-                            NVIC_MPU_ATTR_SHAREABLE | NVIC_MPU_ATTR_BUFFRABLE);
+    HWREG(NVIC_MPU_ATTR) =
+        ((ui32Flags & ~(NVIC_MPU_ATTR_TEX_M | NVIC_MPU_ATTR_CACHEABLE)) | NVIC_MPU_ATTR_SHAREABLE | NVIC_MPU_ATTR_BUFFRABLE);
 }
 
 //*****************************************************************************
@@ -362,9 +346,7 @@ MPURegionSet(uint32_t ui32Region, uint32_t ui32Addr, uint32_t ui32Flags)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPURegionGet(uint32_t ui32Region, uint32_t *pui32Addr, uint32_t *pui32Flags)
-{
+void MPURegionGet(uint32_t ui32Region, uint32_t *pui32Addr, uint32_t *pui32Flags) {
     //
     // Check the arguments.
     //
@@ -405,9 +387,7 @@ MPURegionGet(uint32_t ui32Region, uint32_t *pui32Addr, uint32_t *pui32Flags)
 //! \return None.
 //
 //*****************************************************************************
-void
-MPUIntRegister(void (*pfnHandler)(void))
-{
+void MPUIntRegister(void (*pfnHandler)(void)) {
     //
     // Check the arguments.
     //
@@ -437,9 +417,7 @@ MPUIntRegister(void (*pfnHandler)(void))
 //! \return None.
 //
 //*****************************************************************************
-void
-MPUIntUnregister(void)
-{
+void MPUIntUnregister(void) {
     //
     // Disable the interrupt.
     //

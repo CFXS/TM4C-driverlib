@@ -1,14 +1,14 @@
 printf("Load TM4C driverlib")
-tm4c_driverlib = create_library("tm4c-driverlib")
-tm4c_driverlib:add_include_paths("public", {"./"})
-tm4c_driverlib:add_sources("./driverlib/*.c")
-tm4c_driverlib:create_precompiled_header({
+_G.tm4c_driverlib = create_library("tm4c-driverlib")
+_G.tm4c_driverlib:add_include_paths("public", { "./" })
+_G.tm4c_driverlib:add_sources("./driverlib/*.c")
+_G.tm4c_driverlib:create_precompiled_header({
     "<stdint.h>",
     "<stddef.h>",
 })
 
 if _G.CFXS_TOOLCHAIN == "GCC" or _G.CFXS_TOOLCHAIN == "Clang" then
-    tm4c_driverlib:add_compile_options("private", {
+    _G.tm4c_driverlib:add_compile_options("private", {
         "-Wno-unused-parameter",
     })
 end
